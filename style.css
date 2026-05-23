@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* width: 980px; */
+}
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    padding: 20px;
+    background-color:darkkhaki;
+    gap: 10px;
+}
+.grid{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    display:flex;
+    width: 500px;
+    height: 500px;
+}
+
+.pixel{
+    background-color: white;
+}
