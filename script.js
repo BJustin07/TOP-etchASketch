@@ -24,23 +24,22 @@ function buildGrid(size){
 
             e.target.style.backgroundColor = "green";
         })
+        pixelContainer.addEventListener("touchmove", (e)=>{
+
+            e.target.style.backgroundColor = "green";
+        })
         pixelColumnContainer.append(pixelContainer);
     }
 }
 }
 
-function removeChildNodes(parentNode){
-    parentNode.replaceChildren();
-}
-
-function resetPixelsToWhite(pixels){
-    pixels.forEach(pixel =>{
-        pixel.style.backgroundColor = "white";
-    })
-}
-buildGrid(defaultSize);
-
+function initEventListeners(){
 clearButton.addEventListener("click",()=>{
+    pixelContainers = document.querySelectorAll("#pixel");
+    resetPixelsToWhite(pixelContainers);
+})
+
+clearButton.addEventListener("touchend",()=>{
     pixelContainers = document.querySelectorAll("#pixel");
     resetPixelsToWhite(pixelContainers);
 })
@@ -59,6 +58,37 @@ setGridButton.addEventListener("click",()=>{
         buildGrid(gridSize);
     }
 })
+}
+
+setGridButton.addEventListener("touchend",()=>{
+    let userChosing = true;
+    let gridSize = 0;
+    while(userChosing){
+        gridSize = parseInt(prompt("Enter a valid size from 0 to 100"));
+        if((gridSize >= 0 && gridSize <= 100) || isNaN(gridSize)){
+            userChosing = false;
+        }
+    }
+    if(gridSize > 0){
+        removeChildNodes(gridContainer);
+        buildGrid(gridSize);
+    }
+})
+
+
+function removeChildNodes(parentNode){
+    parentNode.replaceChildren();
+}
+
+function resetPixelsToWhite(pixels){
+    pixels.forEach(pixel =>{
+        pixel.style.backgroundColor = "white";
+    })
+}
+initEventListeners();
+buildGrid(defaultSize);
+
+
 
 
 //todo, dynamically adjusting row/Column count
